@@ -125,26 +125,24 @@ public final class DragonEggDrop extends JavaPlugin {
         // Update check
         UpdateChecker.init(this, 35570);
         if (getConfig().getBoolean(DEDConstants.CONFIG_PERFORM_UPDATE_CHECKS, true)) {
-            this.updateTask = Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> {
-                UpdateChecker.get().requestUpdateCheck().whenComplete((result, exception) -> {
-                    if (result.requiresUpdate()) {
-                        this.getLogger().info(String.format("An update is available! DragonEggDrop %s may be downloaded on SpigotMC", result.getNewestVersion()));
-                        Bukkit.getOnlinePlayers().stream().filter(Player::isOp).forEach(p -> sendMessage(p, "A new version is available for download (Version " + result.getNewestVersion() + ")"));
-                        return;
-                    }
+            this.updateTask = Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> UpdateChecker.get().requestUpdateCheck().whenComplete((result, exception) -> {
+                if (result.requiresUpdate()) {
+                    this.getLogger().info(String.format("An update is available! DragonEggDrop %s may be downloaded on SpigotMC", result.getNewestVersion()));
+                    Bukkit.getOnlinePlayers().stream().filter(Player::isOp).forEach(p -> sendMessage(p, "A new version is available for download (Version " + result.getNewestVersion() + ")"));
+                    return;
+                }
 
-                    UpdateReason reason = result.getReason();
-                    if (reason == UpdateReason.UP_TO_DATE) {
-                        this.getLogger().info(String.format("Your version of DragonEggDrop (%s) is up to date!", result.getNewestVersion()));
-                    }
-                    else if (reason == UpdateReason.UNRELEASED_VERSION) {
-                        getLogger().info(String.format("Your version of DragonEggDrop (%s) is more recent than the one publicly available. Are you on a development build?", result.getNewestVersion()));
-                    }
-                    else {
-                        getLogger().warning("Could not check for a new version of DragonEggDrop. Reason: " + reason);
-                    }
-                });
-            }, 0L, 432000); // 6 hours
+                UpdateReason reason = result.getReason();
+                if (reason == UpdateReason.UP_TO_DATE) {
+                    this.getLogger().info(String.format("Your version of DragonEggDrop (%s) is up to date!", result.getNewestVersion()));
+                }
+                else if (reason == UpdateReason.UNRELEASED_VERSION) {
+                    getLogger().info(String.format("Your version of DragonEggDrop (%s) is more recent than the one publicly available. Are you on a development build?", result.getNewestVersion()));
+                }
+                else {
+                    getLogger().warning("Could not check for a new version of DragonEggDrop. Reason: " + reason);
+                }
+            }), 0L, 432000); // 6 hours
         }
     }
 
