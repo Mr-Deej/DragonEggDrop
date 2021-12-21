@@ -18,6 +18,7 @@ local.properties
 
 ### IntelliJ ###
 .idea
+DragonEggDrop.iml
 
 # External tool builders
 .externalToolBuilders/
