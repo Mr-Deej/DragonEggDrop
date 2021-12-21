@@ -364,10 +364,8 @@ public class EndWorldWrapper {
      *
      * @param record the record to record
      *
-     * @return the oldest record that was pushed out. null if none
      */
-    @Nullable
-    public DragonBattleRecord recordDragonBattle(@NotNull DragonBattleRecord record) {
+    public void recordDragonBattle(@NotNull DragonBattleRecord record) {
         Preconditions.checkArgument(record != null, "record must not be null");
 
         DragonBattleRecord lastRecord = null;
@@ -381,7 +379,6 @@ public class EndWorldWrapper {
         }
 
         this.battleHistory.push(record);
-        return lastRecord;
     }
 
     /**
