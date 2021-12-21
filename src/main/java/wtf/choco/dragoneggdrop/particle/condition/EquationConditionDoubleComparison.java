@@ -45,7 +45,7 @@ public class EquationConditionDoubleComparison implements EquationCondition {
     public static EquationConditionDoubleComparison create(@NotNull JsonObject object, @NotNull DoubleProvider<@NotNull ConditionContext> query) {
         String operation = JsonUtils.getRequiredField(object, "operation", JsonElement::getAsString);
 
-        DoubleBiPredicate predicate = null;
+        DoubleBiPredicate predicate;
         if (operation.equalsIgnoreCase("less_than") || operation.equals("<")) {
             predicate = (queried, value) -> queried < value;
         } else if (operation.equalsIgnoreCase("greater_than") || operation.equals(">")) {
