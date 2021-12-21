@@ -16,6 +16,9 @@ local.properties
 .recommenders
 .checkstyle
 
+### IntelliJ ###
+.idea
+
 # External tool builders
 .externalToolBuilders/
 
