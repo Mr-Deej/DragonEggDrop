@@ -1,5 +1,6 @@
 package wtf.choco.dragoneggdrop.utils;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.command.CommandSender;
@@ -24,9 +25,7 @@ public final class CommandUtils {
      */
     public static void addIfHasPermission(@NotNull CommandSender sender, @NotNull String permission, @NotNull List<@NotNull String> suggestionList, @NotNull String @NotNull... suggestions) {
         if (sender.hasPermission(permission)) {
-            for (String suggestion : suggestions) {
-                suggestionList.add(suggestion);
-            }
+            suggestionList.addAll(Arrays.asList(suggestions));
         }
     }
 
