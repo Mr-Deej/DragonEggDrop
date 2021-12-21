@@ -5,14 +5,6 @@ import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
-
 import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
@@ -32,6 +24,12 @@ import wtf.choco.dragoneggdrop.dragon.loot.DragonLootTable;
 import wtf.choco.dragoneggdrop.particle.ParticleShapeDefinition;
 import wtf.choco.dragoneggdrop.registry.Registerable;
 import wtf.choco.dragoneggdrop.utils.DEDConstants;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Represents an immutable template for a custom dragon to be spawned containing information
@@ -344,7 +342,7 @@ public final class DragonTemplate implements Registerable {
                     spawnAnnouncementString = spawnAnnouncementString.replace("%dragon%", dragonName);
                 }
 
-                spawnAnnouncement = Arrays.asList(ChatColor.translateAlternateColorCodes('&', spawnAnnouncementString));
+                spawnAnnouncement = Collections.singletonList(ChatColor.translateAlternateColorCodes('&', spawnAnnouncementString));
             }
 
             templateBuilder.spawnAnnouncement(spawnAnnouncement);
