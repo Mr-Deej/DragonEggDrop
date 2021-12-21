@@ -392,8 +392,8 @@ public final class DragonLootElementItem implements IDragonLootElement {
             }
 
             effectBuilder.with(effectType.get());
-            effectBuilder.flicker(root.has("flicker") ? root.get("flicker").getAsBoolean() : false);
-            effectBuilder.flicker(root.has("trail") ? root.get("trail").getAsBoolean() : true);
+            effectBuilder.flicker(root.has("flicker") && root.get("flicker").getAsBoolean());
+            effectBuilder.flicker(!root.has("trail") || root.get("trail").getAsBoolean());
 
             if (root.has("color")) {
                 JsonElement colourElement = root.get("color");
@@ -468,8 +468,8 @@ public final class DragonLootElementItem implements IDragonLootElement {
                     }
 
                     effectBuilder.with(effectType.get());
-                    effectBuilder.flicker(effectRoot.has("flicker") ? effectRoot.get("flicker").getAsBoolean() : false);
-                    effectBuilder.flicker(effectRoot.has("trail") ? effectRoot.get("trail").getAsBoolean() : true);
+                    effectBuilder.flicker(effectRoot.has("flicker") && effectRoot.get("flicker").getAsBoolean());
+                    effectBuilder.flicker(!effectRoot.has("trail") || effectRoot.get("trail").getAsBoolean());
 
                     if (effectRoot.has("color")) {
                         JsonElement colourElement = effectRoot.get("color");
