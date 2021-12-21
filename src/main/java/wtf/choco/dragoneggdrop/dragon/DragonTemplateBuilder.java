@@ -141,12 +141,9 @@ public final class DragonTemplateBuilder {
      *
      * @param spawnAnnouncement the spawn announcement to set
      *
-     * @return this instance. Allows for chained method calls
      */
-    @NotNull
-    public DragonTemplateBuilder spawnAnnouncement(@Nullable List<@NotNull String> spawnAnnouncement) {
+    public void spawnAnnouncement(@Nullable List<@NotNull String> spawnAnnouncement) {
         this.spawnAnnouncement = spawnAnnouncement;
-        return this;
     }
 
     /**
